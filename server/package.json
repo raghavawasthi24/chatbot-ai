@@ -1,0 +1,43 @@
+{
+  "name": "ai-chat-agent-backend",
+  "version": "1.0.0",
+  "description": "AI Live Chat Agent – Backend API",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev --respawn --transpile-only --exit-child src/server.ts",
+    "migrate": "ts-node migrations/run.ts",
+    "lint": "tsc --noEmit"
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "rootDir": "./"
+    }
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.28.0",
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "express-validator": "^7.2.0",
+    "helmet": "^7.2.0",
+    "morgan": "^1.10.0",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^20.11.5",
+    "@types/pg": "^8.11.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
