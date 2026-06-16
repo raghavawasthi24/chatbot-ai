@@ -17,6 +17,8 @@ export class ChatService {
   async processMessage(req: ChatRequest): Promise<ChatResponse> {
     const conversation = await this.resolveConversation(req.sessionId);
 
+    console.log('conversation', conversation);
+
     // Snapshot history BEFORE persisting the new user message.
     // This prevents the current message from appearing twice in the LLM context.
     const history = await this.messageRepo.findByConversationId(

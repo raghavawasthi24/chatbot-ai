@@ -14,10 +14,7 @@ export class ChatController {
     try {
       const { message, sessionId } = req.body as ChatRequest;
 
-      console.log('message', message);
-      console.log('sessionId', sessionId);
-
-      // Truncate silently rather than reject — spec says "handle long messages sensibly"
+      // Truncate silently rather than reject
       const safeMessage = message.slice(0, config.chat.maxMessageLength);
 
       const result = await this.chatService.processMessage({

@@ -1,7 +1,7 @@
 import type { ChatApiResponse, HistoryApiResponse, ApiError } from '../types';
 
 // Same-origin in production; Vite proxy handles /chat → localhost:3000 in dev
-const API_BASE = '';
+const API_BASE = 'http://localhost:3000';
 
 const TIMEOUT_MS = 30_000;
 
