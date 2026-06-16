@@ -59,11 +59,15 @@
     width:  32px;
     height: 32px;
     border-radius: 50%;
-    background: var(--clr-primary-light);
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(99 102 241 / 0.2);
     color:      var(--clr-primary);
     display:    flex;
     align-items:     center;
     justify-content: center;
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
   }
 
   /* ── Bubble ────────────────────────────────────────────────────────────── */
@@ -76,22 +80,36 @@
   }
 
   .bubble-row.user .bubble {
-    background:    linear-gradient(135deg, var(--clr-primary), var(--clr-secondary));
+    background:    linear-gradient(135deg,
+      rgba(99 102 241 / 0.95),
+      rgba(139 92 246 / 0.95));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border:        1px solid rgba(255 255 255 / 0.25);
     color:         var(--clr-text-inverse);
     border-bottom-right-radius: var(--radius-sm);
+    box-shadow:
+      0 4px 16px rgba(99 102 241 / 0.3),
+      inset 0 1px 0 rgba(255 255 255 / 0.25);
   }
 
   .bubble-row.ai .bubble {
-    background:    var(--clr-surface);
+    background:    var(--glass-bg-strong);
+    backdrop-filter: blur(12px) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(12px) saturate(var(--glass-saturate));
     color:         var(--clr-text);
-    border:        1px solid var(--clr-border);
+    border:        1px solid var(--glass-border);
     border-bottom-left-radius: var(--radius-sm);
-    box-shadow:    var(--shadow-sm);
+    box-shadow:
+      var(--glass-shadow),
+      inset 0 1px 0 var(--glass-highlight);
   }
 
   .bubble.error {
-    background: var(--clr-error-bg) !important;
-    border-color: var(--clr-error) !important;
+    background: rgba(254 242 242 / 0.9) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border-color: rgba(239 68 68 / 0.4) !important;
     color:        var(--clr-error) !important;
   }
 

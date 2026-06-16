@@ -36,11 +36,15 @@
     width:  32px;
     height: 32px;
     border-radius: 50%;
-    background: var(--clr-primary-light);
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(99 102 241 / 0.2);
     color:      var(--clr-primary);
     display:    flex;
     align-items:     center;
     justify-content: center;
+    box-shadow: inset 0 1px 0 var(--glass-highlight);
   }
 
   .bubble {
@@ -48,11 +52,13 @@
     align-items:   center;
     gap:           5px;
     padding:       0.75rem 1rem;
-    background:    var(--clr-surface);
-    border:        1px solid var(--clr-border);
+    background:    var(--glass-bg-strong);
+    backdrop-filter: blur(12px) saturate(var(--glass-saturate));
+    -webkit-backdrop-filter: blur(12px) saturate(var(--glass-saturate));
+    border:        1px solid var(--glass-border);
     border-radius: var(--radius-2xl);
     border-bottom-left-radius: var(--radius-sm);
-    box-shadow:    var(--shadow-sm);
+    box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
   }
 
   .dot {
