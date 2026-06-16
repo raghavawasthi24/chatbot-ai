@@ -15,6 +15,7 @@ export const config = {
   isDev:   (process.env.NODE_ENV ?? 'development') === 'development',
 
   database: {
+    url:      process.env.DATABASE_URL ?? '',
     host:     process.env.DB_HOST     ?? 'localhost',
     port:     parseInt(process.env.DB_PORT ?? '5432', 10),
     name:     process.env.DB_NAME     ?? 'chat_agent',
@@ -35,6 +36,7 @@ export const config = {
   },
 
   cors: {
-    origin: process.env.CORS_ORIGIN ?? 'http://localhost:5173',
+    /** Comma-separated list, e.g. `https://app.example.com,https://www.example.com` */
+    origins: process.env.CORS_ORIGIN ?? '*',
   },
 } as const;

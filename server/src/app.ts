@@ -16,8 +16,24 @@ export const createApp = (pool: Pool): Application => {
   const app = express();
 
   // ── Security & logging ────────────────────────────────────────────────────
-  app.use(helmet());
-  app.use(cors({ origin: config.cors.origin, credentials: true }));
+  // app.use(helmet());
+  // app.use(cors({
+  //   origin: "*",
+  //   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  //   allowedHeaders: ["Content-Type", "Authorization"]
+  // }));
+  const corsOptions = {
+    origin: config.cors.origins,
+    credentials: true,
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  };
+
+  app.use(cors(corsOptions));
+  app.options('*', cors(corsOptions));
+  app.use(helmet({
+    crossOriginResourcePolicy: { policy: 'cross-origin' }, // ← this line
+  }));
   app.use(morgan(config.isDev ? 'dev' : 'combined'));
 
   // ── Body parsing (16 kb cap to match spec assumption) ─────────────────────

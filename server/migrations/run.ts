@@ -4,20 +4,33 @@
  * Reads DB credentials directly from env so it can run independently
  * of the compiled app (no dependency on src/config/env.ts).
  */
-import { Pool } from 'pg';
+import { Pool, PoolConfig } from 'pg';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { config } from 'dotenv';
 
 config(); // load .env from cwd
 
-const pool = new Pool({
-  host:     process.env.DB_HOST     ?? 'localhost',
-  port:     parseInt(process.env.DB_PORT ?? '5432', 10),
-  database: process.env.DB_NAME     ?? 'chat_agent',
-  user:     process.env.DB_USER     ?? 'postgres',
-  password: process.env.DB_PASSWORD ?? 'postgres',
-});
+const poolConfig: PoolConfig = process.env.DATABASE_URL
+  ? {
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false },
+    }
+  : {
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT ?? '5432', 10),
+      database: process.env.DB_NAME,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      ...(process.env.DB_SSL && {
+        ssl: { rejectUnauthorized: false },
+      }),
+      max: 20,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 3000,
+    };
+
+export const pool = new Pool(poolConfig); 
 
 (async () => {
   const client = await pool.connect();
