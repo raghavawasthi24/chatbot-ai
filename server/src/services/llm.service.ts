@@ -32,7 +32,6 @@ export class LLMService {
    *   history  — every turn except the final user message
    *   current  — the final user message, sent via chat.sendMessage()
    *
-   * This lets the SDK maintain proper alternating-role state internally.
    */
   async generateReply(messages: LLMMessage[]): Promise<string> {
     if (messages.length === 0) {
