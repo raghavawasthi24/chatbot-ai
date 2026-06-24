@@ -93,6 +93,9 @@ export class LLMService {
       return text.trim();
 
     } catch (err) {
+
+      console.log("Error in LLM", err)
+
       // ── Re-throw our own operational errors unchanged ──────────────────────
       if ((err as { isOperational?: boolean }).isOperational) throw err;
 
